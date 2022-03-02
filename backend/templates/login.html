@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+
+<html>
+
+    <head> 
+
+        {% load static %}
+
+        <meta charset="utf-8">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>Leetcode</title>
+
+        <meta name="description" content="">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="{% static 'leetcodeapp/login.css' %}" rel="stylesheet">
+
+    </head>
+    <body >
+
+        <div class="first">
+
+            <h1>login</h1>
+
+            <form action="/login" method="post">
+             {% csrf_token %} 
+           
+            <label for " " >  username </label> <input name="username" type="text" >
+            <label for " " >  password </label> <input name="password" type="text" >
+            
+            <button class="button1" type = "submit"> Login </button>
+
+            </form>
+
+        <script src="" async defer></script>
+
+    </body>
+
+</html> 
+   

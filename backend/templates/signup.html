@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+
+<html>
+
+    <head>
+        
+        
+        <meta charset="utf-8">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>Leetcode</title>
+
+        <meta name="description" content="">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {% comment %} <link href="{% static 'leetcodeapp/signup.css' %}" rel="stylesheet">  {% endcomment %}
+
+    </head>
+        
+    <body class="first">
+
+        <div class="form_wrapper">
+            <div class="form_container">
+              <div class="title_container">
+                <h2> signup To Leetcode</h2>
+              </div>
+              <div class="row clearfix">
+                <div class="">
+
+
+
+                    <form action="/signup" method="post">
+                    {% csrf_token %}
+
+
+                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                      <input type="fullname" name="fullname" placeholder="fullname" required />
+                    </div>
+
+
+                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                      <input type="address" name="address" placeholder="address" required />
+                    </div>
+
+
+                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                      <input type="username" name="username" placeholder="username" required />
+                    </div>
+
+
+                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                        <input type="password" name="password" placeholder="password" required />
+                      </div>
+
+                    
+                        <div class="input_field radio_option">
+                        <input type="radio" name="radiogroup1" id="rd1">
+                        <label for="rd1">Male</label>
+                        <input type="radio" name="radiogroup1" id="rd2">
+                        <label for="rd2">Female</label>
+                        </div>
+                        
+                    <input class="button" type="submit" value="signup" />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+       {% comment %} <div class="first">
+
+            <h1>signup</h1>
+
+            <form action="/signup" method="post">
+             {% csrf_token %} 
+            <label for " " > fullname  </label> <input name="fullname" type="text" >
+            <label for " " > address  </label> <input  name="address" type="text" >
+            <label for " " >  username </label> <input name="username" type="text" >
+            <label for " " >  password </label> <input name="password" type="text" >
+            
+            <button class="button1" type = "submit"> signup </button>
+
+            </form>
+    
+        </div> {% endcomment %}
+
+        <script src="" async defer></script>
+
+    </body>
+
+</html> 
+   
