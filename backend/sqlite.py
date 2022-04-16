@@ -51,7 +51,7 @@ def checkUser(data):
     cr = conn.cursor()
     user = None
     try:
-        cr.execute(f"SELECT * FROM users WHERE email LIKE '{data}' ")  
+        cr.execute(f"SELECT *, rowid FROM users WHERE email LIKE '{data}' ")  
         user = cr.fetchone()  
     finally:
         conn.commit()

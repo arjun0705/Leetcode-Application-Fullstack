@@ -25,7 +25,8 @@ def login(request):
         user = sqlite.checkUser(email)
         if user:
             if user[3] == password:
-                return JsonResponse(data={"fname":user[0], "lname":user[1],"email":[2]})
+                request.session["userid"] = user[5]
+                return JsonResponse(data={"fname":user[0], "lname":user[1],"email":user[2]})
             return JsonResponse(data={"msg":"wrong password.."})
         return JsonResponse(data={"msg":"wrong email"}) 
     return JsonResponse(data={"msg":"wrong request"})
@@ -34,12 +35,13 @@ def login(request):
 @csrf_exempt
 def addProblem(request):
     if request.method == "POST":
+        print("**********************",request.session)
         problemTitle = json.loads(request.body)["title"]
         problemDescription = json.loads(request.body)["description"]
         problemDifficulty = json.loads(request.body)['difficulty']
         problemSolution = json.loads(request.body)["solution"]
-        usrid = json.loads(request.body)["userId"]
-        sqlite.addProblem((problemTitle,problemDescription,problemDifficulty,problemSolution,usrid))
+        # usrid = json.loads(request.body)["userId"]
+        sqlite.addProblem((problemTitle,problemDescription,problemDifficulty,problemSolution,request.session["userid"]))
         return JsonResponse(data={"msg":"problem added successfully..!!"})
     return JsonResponse(data={"msg":"wrong request"})
 

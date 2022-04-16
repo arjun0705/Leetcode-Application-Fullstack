@@ -20,14 +20,14 @@ function Signup() {
     })
   }
 
-  useEffect(()=>{
-    axios.post('http://127.0.0.1:8000/signup',user).then(
-      (data)=>{
-        console.log(data);
+  // useEffect(()=>{
+  //   axios.post('http://127.0.0.1:8000/signup',user).then(
+  //     (data)=>{
+  //       console.log(data);
 
-      }
-    )
-  },[])
+  //     }
+  //   )
+  // },[])
 
   useEffect(()=>{
     console.log(user);
