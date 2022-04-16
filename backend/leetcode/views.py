@@ -28,7 +28,8 @@ def login(request):
                 return JsonResponse(data={"fname":user[0], "lname":user[1],"email":[2]})
             return JsonResponse(data={"msg":"wrong password.."})
         return JsonResponse(data={"msg":"wrong email"}) 
-    return JsonResponse("wrong request")          
+    return JsonResponse(data={"msg":"wrong request"})
+              
 
 @csrf_exempt
 def addProblem(request):
@@ -47,6 +48,8 @@ def getProblem(request,id):
     if request.method == "GET":
         problem = sqlite.getProblem(id)
         return JsonResponse(data = {"msg":problem})
+    return JsonResponse(data={"msg":"wrong request"})
+
 
 @csrf_exempt
 def getProblems(request):
@@ -54,6 +57,8 @@ def getProblems(request):
         problems = sqlite.getProblems()
         print(problems)
         return JsonResponse(data = {"msg":problems})
+    return JsonResponse(data={"msg":"wrong request"})
+
 
 @csrf_exempt
 def updateProblem(request,id):
@@ -65,10 +70,14 @@ def updateProblem(request,id):
         problemSolution = json.loads(request.body)["solution"]    
         sqlite.updateProblem({"title":problemTitle,"description":problemDescription,"difficulty":problemDifficulty,"solution":problemSolution},id)
         return JsonResponse(data={"msg":"record updated successfully..!!"})
-
+    return JsonResponse(data={"msg":"wrong request"})
+    
 @csrf_exempt
 def deleteProblem(request,id):
     if request.method == "DELETE":
         sqlite.deleteProblem(id)
         return JsonResponse(data={"msg":"problem deleted successfully...!!"})
+    return JsonResponse(data={"msg":"wrong request"})
         
+
+
