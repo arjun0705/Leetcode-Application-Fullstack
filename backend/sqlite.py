@@ -1,90 +1,103 @@
+
 import sqlite3
+from time import process_time
 from django import db
 
+# con = sqlite3.connect('db.sqlite3')
 
+# cr = con.cursor()
 
-con = sqlite3.connect("Leetcode.db")
-c = con.cursor()
+# cr.execute(""" CREATE TABLE users(
+#     first_name VARCHAR(25),
+#     last_name  VARCHAR(25),
+#     email TEXT UNIQUE NOT NULL,
+#     password VARCHAR(20) NOT NULL,
+#     is_admin BOOLEAN DEFAULT 1
+# )""")
 
-# c.execute(" CREATE TABLE admins (fullname VARCHAR NOT NULL, address VARCHAR NOT NULL, username VARCHAR NOT NULL UNIQUE, password VARCHAR NOT NULL ) ")
-
-
-# c.execute(""" CREATE TABLE problems (title VARCHAR(120), 
-#                decription VARCHAR,
-#                solutions VARCHAR,
-#                difficulty VARCHAR,
-#                userid VARCHAR NOT NULL,
-#                acceptence VARCHAR,
-#                FOREIGN KEY(userid) REFERENCES createadmin(id) 
-#                 )""")
 # con.commit()
-# con.close()                
+# con.close()
+
+# con = sqlite3.connect('db.sqlite3')
+
+# cr = con.cursor()
+
+# cr.execute(""" CREATE TABLE problems(
+#     Title VARCHAR(500),
+#     Description TEXT,
+#     Difficulty VARCHAR(30),
+#     Solution TEXT,
+#     usrid VARCHAR NOT NULL
+      
+# )""")
+# con.commit()
+# con.close()
 
 
-def signup(data):
-    con = sqlite3.connect("Leetcode.db")
 
-    c = con.cursor()
-    data = (data[0],data[1],data[2],data[3])
-    c.execute(f"INSERT INTO admins VALUES {data}")
-    con.commit()
-    con.close()
-    db.connections.close_all()
-    return c
+
+
+def addUser(data):
+    conn = sqlite3.connect('db.sqlite3')
+    cr = conn.cursor()
+    try:
+        cr.execute(f""" INSERT INTO users VALUES {data}""")
+    finally:
+        conn.commit()
+        conn.close()
+
+def checkUser(data):
+    conn = sqlite3.connect("db.sqlite3")  
+    cr = conn.cursor()
+    user = None
+    try:
+        cr.execute(f"SELECT * FROM users WHERE email LIKE '{data}' ")  
+        user = cr.fetchone()  
+    finally:
+        conn.commit()
+        conn.close()
+        return user    
     
+def addProblem(data):
+    conn = sqlite3.connect('db.sqlite3')
+    cr = conn.cursor()
 
-# def getuser():
-#     con = sqlite3.connect("Leetcode.db",timeout=10)
-#     c = con.cursor()
-#     c.execute(f"SELECT * FROM admins")
-#     data = c.fetchall()
-#     z = []
-#     for d in data:
-#         z.append((d[0],d[1],d[2],d[3]))
-#     con.commit()
-#     con.close()
-#     db.connections.close_all()
+    cr.execute(f"INSERT INTO problems VALUES {data} ")
+    conn.commit()
+    conn.close()
 
-#     return z
+def getProblem(id):
+    conn = sqlite3.connect('db.sqlite3')
+    cr = conn.cursor()
+    cr.execute(f"SELECT * FROM problems WHERE rowid LIKE {id} ")
+    problem = cr.fetchone()
+    conn.commit()
+    conn.commit()
+    return problem
 
+def getProblems():
+    conn = sqlite3.connect('db.sqlite3')
+    cr = conn.cursor()
+    cr.execute(f"SELECT * FROM problems")
+    problems = cr.fetchall()
+    conn.commit()
+    conn.commit()
+    return problems    
 
-def createproblem(data):
-    con = sqlite3.connect("Leetcode.db",timeout=10)
+def updateProblem(data,id):
+    conn = sqlite3.connect('db.sqlite3')
+    cr = conn.cursor()
+    cr.execute(f"UPDATE problems SET Title = '{data['title']}',Description = '{data['description']}',Difficulty = '{data['difficulty']}',Solution = '{data['solution']}' WHERE rowid LIKE {id} ")
+    # problem = cr.fetchone()
+    conn.commit()
+    conn.commit()
+    # return problem    
 
-    c = con.cursor()
-    data = (data[0],data[1],data[2],data[3],data[4],data[5])
-    c.execute(f"INSERT INTO problems VALUES {data}")
-    con.commit()
-    con.close()
-    db.connections.close_all()
-
-# def getproblem():
-#     con = sqlite3.connect("Leetcode.db",timeout=10)
-#     c = con.cursor()
-#     c.execute(f"SELECT * FROM problems")
-#     data = c.fetchall()
-#     z = []
-#     for d in data:
-#         z.append((d[0],d[1],d[2],d[3],d[4]),d[5])
-#     con.commit()
-#     con.close()
-#     db.connections.close_all()
-
-#     return z
-
-
-def login(data):
-    con = sqlite3.connect("Leetcode.db",timeout=10)
-    c = con.cursor()
-    # print('>>>>>>>>>>>>>>>>>>',data)
-    data = (data[0],data[1])
+def deleteProblem(id):
+    conn = sqlite3.connect('db.sqlite3')
+    cr = conn.cursor()
+    cr.execute(f"DELETE FROM problems WHERE rowid LIKE {id} ")
+    conn.commit()
+    conn.commit()
     
-    c.execute(f"SELECT * FROM admins WHERE username='{data[0]}' AND password='{data[1]}' ")
-    print(c.fetchall())
-    con.commit()
-    con.close()
-    db.connections.close_all()
-    return c   
-
-
 
