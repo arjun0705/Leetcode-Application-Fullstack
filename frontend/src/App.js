@@ -2,11 +2,11 @@ import './App.css';
 import {Link, Route, Routes} from 'react-router-dom'
 import Home from './components/Home';
 import AddProblem from './components/AddProblem';
-import AllProblems from './components/AllProblems';
 import DeleteProblem from './components/DeleteProblem';
 import UpdateProblem from './components/UpdateProblem';
 import Signup from './components/SignUp';
 import Login from './components/Login';
+import ShowProblem from './components/ShowProblem';
 
 function App() {
   return (
@@ -24,8 +24,8 @@ function App() {
   <Routes>
     <Route path='/' element={<Home/>} />
     <Route path='addproblem' element={<AddProblem/>} />
-    <Route path='allproblems' element={<AllProblems />} />
-    <Route path='updateproblem' element={<UpdateProblem/>} />
+    <Route path='showproblems/:id' element={<ShowProblem />} />
+    <Route path='updateproblem/:id' element={<UpdateProblem/>} />
     <Route path='deleteproblem' element={<DeleteProblem/>} />
     <Route path='signup' element={<Signup/>} />
     <Route path='login' element={<Login/>} />

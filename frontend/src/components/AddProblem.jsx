@@ -24,7 +24,7 @@ function AddProblem() {
   },[problem])
  
   return (
-    <div>
+    <div className='addproblem'>
        <form className="formclass">
               <div>
                 <label for="title"> Enter Problem Title </label>

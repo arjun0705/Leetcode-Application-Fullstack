@@ -1,38 +1,199 @@
-.App {
-  text-align: center;
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body{
+  min-width: 100%;
   min-height: 100vh;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.login,.signup,.addproblem, .updateproblem{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+form{
+  min-width: 400px;
+  padding: 60px 20px;
+  background-color:rgb(145, 100, 184);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: column;
+}
+.addproblem form,.updateproblem form{
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 600px;
+} 
+form div{
+  margin: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+form div h1{
+  color:#fff;
+  
+}
+form div label{
+  min-width: 250px;
+  color: #fff;
+  margin: 5px 0;
+
 }
 
-.App-link {
-  color: #61dafb;
+form div input{
+  padding: 5px;
+  border: none;
+  width: 250px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+form div input[type="submit"]{
+  width:150px;
+  color: rgb(145, 100, 184);
+  background-color: #fff;
+  font-weight: 600;
+  padding: 10px;
+  margin: 20px 0;  
+}
+
+.isadmin {
+  flex-direction: row;
+  justify-content: center;
+  padding: 0 20px;
+
+}
+
+.isadmin input{
+  width: auto;
+  margin-left:40px;
+  display: inline;
+}
+
+.isadmin label{
+  width: 100px;
+  /* height: 200px; */
+
+}
+
+.addproblem textarea,.updateproblem textarea{
+  width: 350px;
+  height: 100px;
+}
+
+.addproblem input,.addproblem label, .addproblem select{
+  width: 350px;
+}
+
+.updateproblem input,.updateproblem label, .updateproblem select{
+  width: 350px;
+}
+
+.home{
+  position: relative;
+  top: 100px;
+  left: 50%;
+  transform: translatex(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.home table{
+  border: 1px solid rgba(68, 68, 68, 0.407); 
+  padding: 10px;
+  margin: 10px; 
+}
+
+.home table tr,.home table td{
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+}
+
+.home input{
+  width: 100%;
+  padding: 2px 20px;
+}
+
+.home table tr:nth-child(even){
+  background-color: rgb(145, 100, 184);
+  color: #fff;
+}
+
+.home table tr:nth-child(odd){
+  color: rgb(145, 100, 184);
+
+}
+
+.nav{
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgb(145, 100, 184);
+}
+
+.nav ul{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+}
+.nav ul a{
+  text-decoration: none;
+}
+.nav ul li{
+  margin: 0 10px;
+  background-color: #fff;
+  color:rgb(145, 100, 184);
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.nav span{
+  color: #fff;
+  font-weight: 600;
+}
+
+.showproblem{
+  width: 100%;
+  height: calc(100vh-50px);
+  position: absolute;
+  top:50px;
+  left: 0;
+
+}
+
+.showproblem .info{
+  width: 50%;
+  height: calc(100vh-50px) !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: beige;
+}
+
+.showproblem .ide{
+  width: 50%;
+  height: calc(100vh-50px);
+  border:  1px solid red;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgb(232, 232, 36);
 }

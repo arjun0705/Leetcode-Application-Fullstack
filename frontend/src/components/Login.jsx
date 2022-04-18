@@ -19,8 +19,9 @@ function Login() {
   }
 
   return (
-    <div>
+    <div className='login'>
         <form>
+        <div><h1>Login Form</h1></div>
              <div>
                 <label for="email"> Enter Email </label>
                 <input type="text" name='email' id='email' onChange={handleChange}/>

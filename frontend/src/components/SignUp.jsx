@@ -34,7 +34,7 @@ function Signup() {
   },[user])
  
   return (
-          <div>
+          <div className='signup'>
             <form action="" className="formclass">
               <div>
                 <label for="firstname"> Enter Firstname </label>
@@ -56,7 +56,7 @@ function Signup() {
                 <input type="text" name='password' id='password' onChange={handleChange} />
               </div>
 
-              <div>
+              <div className='isadmin'>
                 <input type="checkbox" name='isAdmin' id='isAdmin' onChange={handleChange} />
                 <label for="isAdmin"> Signup as Admin  </label>
               </div>

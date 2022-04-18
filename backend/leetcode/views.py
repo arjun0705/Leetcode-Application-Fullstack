@@ -41,7 +41,7 @@ def addProblem(request):
         problemDifficulty = json.loads(request.body)['difficulty']
         problemSolution = json.loads(request.body)["solution"]
         # usrid = json.loads(request.body)["userId"]
-        sqlite.addProblem((problemTitle,problemDescription,problemDifficulty,problemSolution,request.session["userid"]))
+        sqlite.addProblem((problemTitle,problemDescription,problemDifficulty,problemSolution,1))
         return JsonResponse(data={"msg":"problem added successfully..!!"})
     return JsonResponse(data={"msg":"wrong request"})
 
@@ -49,7 +49,7 @@ def addProblem(request):
 def getProblem(request,id):
     if request.method == "GET":
         problem = sqlite.getProblem(id)
-        return JsonResponse(data = {"msg":problem})
+        return JsonResponse(data={'title':problem[0],'description':problem[1],'difficulty':problem[2],'solution':problem[3]})
     return JsonResponse(data={"msg":"wrong request"})
 
 
@@ -57,9 +57,14 @@ def getProblem(request,id):
 def getProblems(request):
     if request.method == "GET":
         problems = sqlite.getProblems()
-        print(problems)
-        return JsonResponse(data = {"msg":problems})
-    return JsonResponse(data={"msg":"wrong request"})
+        data=[]
+
+        for problem in problems:
+
+            data.append({'title':problem[0],'description':problem[1],'difficulty':problem[2],'solution':problem[3]})
+
+        return JsonResponse(data={'data':data})
+    return JsonResponse({"msg":"wrong request"})    
 
 
 @csrf_exempt
